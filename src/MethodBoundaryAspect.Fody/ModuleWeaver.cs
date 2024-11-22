@@ -258,7 +258,8 @@ namespace MethodBoundaryAspect.Fody
 
         private bool IsMethodBoundaryAspect(TypeDefinition attributeTypeDefinition)
         {
-            var currentType = attributeTypeDefinition.BaseType;
+            var currentType = attributeTypeDefinition?.BaseType;
+	    if (currentType == null) return false;
             do
             {
                 if (currentType.FullName == AttributeFullNames.OnMethodBoundaryAspect)
